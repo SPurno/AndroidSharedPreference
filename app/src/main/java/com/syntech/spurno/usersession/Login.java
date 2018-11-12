@@ -17,7 +17,7 @@ public class Login extends AppCompatActivity {
     Button submit, show;
     TextView data;
     RelativeLayout loginForm;
-    SharedPreferences preferences;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class Login extends AppCompatActivity {
         String mUserName = username.getText().toString();
         String mPass = password.getText().toString();
         
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("key_name1", mUserName);  // Saving string
         editor.putString("key_name2", mPass);  // Saving string
@@ -66,8 +66,8 @@ public class Login extends AppCompatActivity {
     }
 
     private void LoadData() {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-        String Pass = pref.getString("key_name1", null);             // getting Integer
+        pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        String Pass = pref.getString("key_name1", null);             // getting String
         String email = pref.getString("key_name2", null);         // getting String
 
         Toast.makeText(getApplicationContext(),"User Name: " + email +  "\n Password: " + Pass, Toast.LENGTH_LONG).show();
